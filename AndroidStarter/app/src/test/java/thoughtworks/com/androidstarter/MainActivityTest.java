@@ -47,7 +47,7 @@ public class MainActivityTest {
         MainActivity activity = Robolectric.setupActivity(MainActivity.class);
         Button button = (Button) activity.findViewById(R.id.button);
 
-        activity.sendMessage(button);
+        button.performClick();
 
         Intent expectedIntent = new Intent(activity, DisplayMessageActivity.class);
 
