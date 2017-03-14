@@ -10,6 +10,10 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import static junit.framework.Assert.assertTrue;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.robolectric.Shadows.shadowOf;
 
@@ -26,7 +30,7 @@ public class MainActivityTest {
         MainActivity activity = Robolectric.setupActivity(MainActivity.class);
         EditText textBox = (EditText) activity.findViewById(R.id.editText);
 
-        assert(textBox.getHint().toString().equals("Enter a message"));
+        assertThat(textBox.getHint().toString(), is(equalTo("Enter a message")));
 
     }
 
@@ -35,7 +39,7 @@ public class MainActivityTest {
         MainActivity activity = Robolectric.setupActivity(MainActivity.class);
         Button button = (Button) activity.findViewById(R.id.button);
 
-        assert(button.getText().toString().equals("Send"));
+        assertThat(button.getText().toString(), is(equalTo("Send")));
     }
 
     @Test
@@ -47,6 +51,7 @@ public class MainActivityTest {
 
         Intent expectedIntent = new Intent(activity, DisplayMessageActivity.class);
 
-        assert(shadowOf(activity).getNextStartedActivity()).equals(expectedIntent);
+        assertTrue(shadowOf(activity).getNextStartedActivity().filterEquals(expectedIntent));
     }
+
 }
