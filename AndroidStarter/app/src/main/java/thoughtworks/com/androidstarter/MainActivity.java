@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String EXTRA_MESSAGE = "com.thoughtworks.AndroidStarter.message";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.editText);
         String message = editText.getText().toString();
 
-        intent.putExtra(EXTRA_MESSAGE, message);
+        intent.putExtra(Extras.EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 }
