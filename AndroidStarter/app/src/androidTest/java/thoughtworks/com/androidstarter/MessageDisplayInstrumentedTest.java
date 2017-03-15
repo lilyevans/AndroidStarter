@@ -26,6 +26,7 @@ public class MessageDisplayInstrumentedTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
             MainActivity.class);
+
     @Test
     public void shouldDisplayMessageUserSubmits() throws Exception {
         onView(withId(R.id.editText)).perform(typeText("Hello World!"));
