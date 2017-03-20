@@ -9,18 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Practice.MainActivity" />
         <activity
-            android:name=".DisplayMessageActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".CategoriesActivity">
+            android:name=".Practice.DisplayMessageActivity"
+            android:parentActivityName=".Practice.MainActivity" />
+        <activity android:name=".activities.CategoriesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TagsActivity"></activity>
+        <activity
+            android:name=".activities.TagsActivity"
+            android:parentActivityName=".activities.CategoriesActivity"/>
+        <activity
+            android:name=".activities.SongsActivity"
+            android:parentActivityName=".activities.TagsActivity"/>
     </application>
 
 </manifest>

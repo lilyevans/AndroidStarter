@@ -9,6 +9,8 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import thoughtworks.com.androidstarter.Practice.DisplayMessageActivity;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
@@ -16,7 +18,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.isNotNull;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static org.robolectric.Shadows.shadowOf;
 
 /**
@@ -29,7 +30,7 @@ public class DisplayMessageActivityTest {
     @Test
     public void shouldDisplayMessageFromPreviousActivityWhenCreated() throws Exception {
         Intent intent = new Intent();
-        intent.putExtra(Extras.EXTRA_MESSAGE, "message");
+        intent.putExtra("com.thoughtworks.AndroidStarter.message", "message");
         DisplayMessageActivity activity = Robolectric.buildActivity(DisplayMessageActivity.class, intent).setup().get();
 
         TextView textView = (TextView) activity.findViewById(R.id.textView);

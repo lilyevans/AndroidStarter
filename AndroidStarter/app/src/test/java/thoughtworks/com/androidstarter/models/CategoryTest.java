@@ -1,6 +1,8 @@
-package thoughtworks.com.androidstarter;
+package thoughtworks.com.androidstarter.models;
 
 import org.junit.Test;
+
+import thoughtworks.com.androidstarter.models.Category;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.core.Is.is;
