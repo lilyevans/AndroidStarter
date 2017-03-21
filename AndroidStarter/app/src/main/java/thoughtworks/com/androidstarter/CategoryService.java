@@ -11,6 +11,7 @@ class CategoryService {
 
     private HttpService httpService;
 
+
     public CategoryService(HttpService httpService) {
         this.httpService = httpService;
     }
@@ -20,12 +21,22 @@ class CategoryService {
         ArrayList<Category> categories = new ArrayList<Category>();
 
         for (int i = 0; i < categoriesJSON.length(); i++){
-                JSONObject objectFromArray = categoriesJSON.optJSONObject(i);
-                Category categoryFromJSON = new Category(objectFromArray.optString("title"), objectFromArray.optString("id"));
+            Category categoryFromJSON = parseCategory(categoriesJSON.optJSONObject(i));
+            if (categoryFromJSON != null){
                 categories.add(categoryFromJSON);
+            }
         }
 
         return categories;
     }
 
+    public Category parseCategory(JSONObject json) {
+        Category category = null;
+
+        if (json.has("title") && json.has("id")){
+            category = new Category(json.optString("title"), json.optString("id"));
+        }
+
+        return category;
+    }
 }

@@ -19,4 +19,9 @@ public class Category {
         return id;
     }
 
+    @Override
+    public String toString(){
+        return title;
+    }
+
 }
