@@ -1,7 +1,7 @@
 package thoughtworks.com.androidstarter;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -13,7 +13,6 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-
         ListView listView = (ListView) findViewById(R.id.category_list_view);
         HttpService httpService = new HttpService();
         CategoryService categoryService = new CategoryService(httpService);
