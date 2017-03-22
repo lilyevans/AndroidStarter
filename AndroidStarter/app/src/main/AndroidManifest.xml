@@ -13,19 +13,14 @@
         <activity
             android:name=".Practice.DisplayMessageActivity"
             android:parentActivityName=".Practice.MainActivity" />
-        <activity android:name=".activities.CategoriesActivity">
+        <activity android:name=".Category.CategoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.TagsActivity"
-            android:parentActivityName=".activities.CategoriesActivity"/>
-        <activity
-            android:name=".activities.SongsActivity"
-            android:parentActivityName=".activities.TagsActivity"/>
+        <activity android:name=".TagActivity"></activity>
     </application>
 
 </manifest>
