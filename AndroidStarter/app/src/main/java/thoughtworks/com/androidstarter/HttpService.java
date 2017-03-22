@@ -5,7 +5,7 @@ import org.json.JSONException;
 
 
 
-class HttpService {
+public class HttpService {
 
     public JSONArray getCategories() {
         //GET to /api/1/tags

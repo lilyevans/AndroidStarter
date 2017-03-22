@@ -1,4 +1,4 @@
-package thoughtworks.com.androidstarter;
+package thoughtworks.com.androidstarter.Category;
 
 
 public class Category {

@@ -1,6 +1,5 @@
-package thoughtworks.com.androidstarter;
+package thoughtworks.com.androidstarter.Category;
 
-import org.hamcrest.Matcher;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -11,13 +10,17 @@ import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
 
+import thoughtworks.com.androidstarter.BuildConfig;
+import thoughtworks.com.androidstarter.Category.Category;
+import thoughtworks.com.androidstarter.Category.CategoryService;
+import thoughtworks.com.androidstarter.HttpService;
+
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.isNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

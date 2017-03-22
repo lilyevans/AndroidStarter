@@ -1,16 +1,17 @@
-package thoughtworks.com.androidstarter;
+package thoughtworks.com.androidstarter.Category;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import thoughtworks.com.androidstarter.Category.Category;
+import thoughtworks.com.androidstarter.HttpService;
 
-class CategoryService {
+
+public class CategoryService {
 
     private HttpService httpService;
-
 
     public CategoryService(HttpService httpService) {
         this.httpService = httpService;
