@@ -1,7 +1,8 @@
-package thoughtworks.com.androidstarter.models;
+package thoughtworks.com.androidstarter.Category;
 
 
 public class Category {
+
     private String title;
     private String id;
 
@@ -10,12 +11,17 @@ public class Category {
         this.id = id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getId() {
+        return id;
+    }
+
     @Override
     public String toString(){
         return title;
     }
 
-    public String getID() {
-        return id;
-    }
 }

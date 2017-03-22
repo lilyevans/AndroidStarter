@@ -20,9 +20,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.robolectric.Shadows.shadowOf;
 
-/**
- * Created by lilyevans on 3/14/17.
- */
 
 @Config(constants = BuildConfig.class, sdk = 25)
 @RunWith(RobolectricTestRunner.class)

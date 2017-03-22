@@ -20,9 +20,6 @@ import static org.mockito.Matchers.isNotNull;
 import static org.mockito.Mockito.mock;
 import static org.robolectric.Shadows.shadowOf;
 
-/**
- * Created by lilyevans on 3/15/17.
- */
 
 @Config(constants = BuildConfig.class, sdk = 25)
 @RunWith(RobolectricTestRunner.class)
