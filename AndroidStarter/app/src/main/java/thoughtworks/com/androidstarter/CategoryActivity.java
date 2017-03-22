@@ -13,13 +13,12 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+
         ListView listView = (ListView) findViewById(R.id.category_list_view);
         HttpService httpService = new HttpService();
         CategoryService categoryService = new CategoryService(httpService);
+        CategoryViewModel categoryViewModel = new CategoryViewModel(this, categoryService);
 
-        ArrayList<Category> categories = categoryService.getCategories();
-        ArrayAdapter<Category> arrayAdapter = new ArrayAdapter<Category>(this, R.layout.list_item_view, categories);
-
-        listView.setAdapter(arrayAdapter);
+        listView.setAdapter(categoryViewModel.buildArrayAdapter());
     }
 }
