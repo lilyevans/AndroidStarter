@@ -17,9 +17,7 @@ class CategoryViewModel {
     }
 
     public ArrayAdapter<Category> buildArrayAdapter() {
-        ArrayList<Category> categories = new ArrayList<Category>();
-        categories.add(new Category("title", "id"));
-
+        ArrayList<Category> categories = categoryService.getCategories();
         return new ArrayAdapter<Category>(context, R.layout.list_item_view, categories);
     }
 }
