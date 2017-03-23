@@ -19,6 +19,7 @@ import thoughtworks.com.androidstarter.Tag.TagViewModel;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.core.Is.is;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -32,10 +33,10 @@ public class TagViewModelTest {
         tags.add(tag);
 
         TagService tagService = mock(TagService.class);
-        when(tagService.getTags()).thenReturn(tags);
+        when(tagService.getTags(anyString())).thenReturn(tags);
         TagActivity tagActivity = Robolectric.buildActivity(TagActivity.class).get();
 
-        TagViewModel tagViewModel = new TagViewModel(tagActivity, tagService);
+        TagViewModel tagViewModel = new TagViewModel(tagActivity, tagService, "1");
 
         ArrayAdapter<Tag> actualAdapter = tagViewModel.buildArrayAdapter();
 

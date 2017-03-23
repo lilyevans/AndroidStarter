@@ -1,8 +1,33 @@
 package thoughtworks.com.androidstarter.Tag;
 
-/**
- * Created by lilyevans on 3/23/17.
- */
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tag {
+    private List<String> songIds;
+    private String id;
+    private String name;
+
+    public Tag(String name, String id, List<String> songIds) {
+        this.name = name;
+        this.id = id;
+        this.songIds = songIds;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public List<String> getSongIds() {
+        return songIds;
+    }
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }

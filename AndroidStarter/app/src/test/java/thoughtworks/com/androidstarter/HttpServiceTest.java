@@ -29,7 +29,16 @@ public class HttpServiceTest {
         assertThat(jsonCategories.length(), is(equalTo(3)));
     }
 
+    @Test
+    public void shouldReturnTagJSONArray() throws Exception {
+        HttpService httpService = new HttpService();
 
+        JSONArray jsonTags = httpService.getTags("1");
+        JSONObject expectedJSON0 = new JSONObject("{'name':'Hell Can Wait', 'id':'1', 'song_ids':[1]}");
+        JSONObject expectedJSON1 = new JSONObject("{'name':'Summertime 06', 'id':'2', 'song_ids':[2,3]}");
+        JSONObject expectedJSON2 = new JSONObject("{'name':'Prima Donna', 'id':'3', 'song_ids':[4,5]}");
 
+        assertThat(jsonTags.getJSONObject(0).toString(), is(equalTo(expectedJSON0.toString())));
 
+    }
 }
