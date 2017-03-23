@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 
-import thoughtworks.com.androidstarter.TagActivity;
+import thoughtworks.com.androidstarter.Tag.TagActivity;
 
 
 public class OnCategoryClickListener implements AdapterView.OnItemClickListener {

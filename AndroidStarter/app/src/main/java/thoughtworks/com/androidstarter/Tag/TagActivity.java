@@ -1,7 +1,9 @@
-package thoughtworks.com.androidstarter;
+package thoughtworks.com.androidstarter.Tag;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import thoughtworks.com.androidstarter.R;
 
 public class TagActivity extends AppCompatActivity {
 

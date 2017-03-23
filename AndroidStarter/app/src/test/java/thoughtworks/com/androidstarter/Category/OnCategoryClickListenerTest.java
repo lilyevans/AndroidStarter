@@ -11,7 +11,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import thoughtworks.com.androidstarter.BuildConfig;
-import thoughtworks.com.androidstarter.TagActivity;
+import thoughtworks.com.androidstarter.Tag.TagActivity;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyInt;
