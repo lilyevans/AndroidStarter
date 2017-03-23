@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import thoughtworks.com.androidstarter.Category.Category;
 import thoughtworks.com.androidstarter.HttpService;
 
 

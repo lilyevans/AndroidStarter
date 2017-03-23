@@ -2,19 +2,16 @@ package thoughtworks.com.androidstarter.Category;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
-
 import java.util.ArrayList;
-
 import thoughtworks.com.androidstarter.R;
 
 
-public class CategoryViewModel extends ArrayAdapter<Category>{
+public class CategoryViewModel {
 
-    private final CategoryService categoryService;
+    private CategoryService categoryService;
     private Context context;
 
     public CategoryViewModel(Context context, CategoryService categoryService){
-        super(context, R.layout.list_item_view, categoryService.getCategories());
         this.context = context;
         this.categoryService = categoryService;
     }
