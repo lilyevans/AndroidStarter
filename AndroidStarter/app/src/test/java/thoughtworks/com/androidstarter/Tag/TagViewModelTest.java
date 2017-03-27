@@ -11,13 +11,11 @@ import org.robolectric.annotation.Config;
 import java.util.ArrayList;
 
 import thoughtworks.com.androidstarter.BuildConfig;
-import thoughtworks.com.androidstarter.Tag.Tag;
-import thoughtworks.com.androidstarter.Tag.TagActivity;
-import thoughtworks.com.androidstarter.Tag.TagService;
-import thoughtworks.com.androidstarter.Tag.TagViewModel;
 
+import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.isA;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
@@ -41,6 +39,20 @@ public class TagViewModelTest {
         ArrayAdapter<Tag> actualAdapter = tagViewModel.buildArrayAdapter();
 
         assertThat(actualAdapter.getItem(0), is(equalTo(tag)));
+
+    }
+
+    @Test
+    public void shouldBuildOnItemClickListenerForTags() throws Exception {
+        TagService tagService = mock(TagService.class);
+        TagActivity tagActivity = Robolectric.buildActivity(TagActivity.class).get();
+
+        TagViewModel tagViewModel = new TagViewModel(tagActivity, tagService, "1");
+
+        OnTagClickListener actualOnTagClickListener = tagViewModel.buildTagClickListener();
+
+        assertNotNull(actualOnTagClickListener);
+        assertThat(actualOnTagClickListener, isA(OnTagClickListener.class));
 
     }
 }

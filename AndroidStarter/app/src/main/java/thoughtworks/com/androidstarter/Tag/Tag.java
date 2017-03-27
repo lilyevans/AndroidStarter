@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tag {
-    private List<String> songIds;
+    private ArrayList<String> songIds;
     private String id;
     private String name;
 
-    public Tag(String name, String id, List<String> songIds) {
+    public Tag(String name, String id, ArrayList<String> songIds) {
         this.name = name;
         this.id = id;
         this.songIds = songIds;
@@ -22,7 +22,7 @@ public class Tag {
         return id;
     }
 
-    public List<String> getSongIds() {
+    public ArrayList<String> getSongIds() {
         return songIds;
     }
 

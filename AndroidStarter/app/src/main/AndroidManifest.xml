@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Tag.TagActivity"></activity>
+        <activity android:name=".Tag.TagActivity" />
+        <activity android:name=".Song.SongActivity"></activity>
     </application>
 
 </manifest>

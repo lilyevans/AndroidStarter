@@ -26,4 +26,8 @@ public class TagViewModel {
     public Context getContext() {
         return context;
     }
+
+    public OnTagClickListener buildTagClickListener() {
+        return new OnTagClickListener();
+    }
 }

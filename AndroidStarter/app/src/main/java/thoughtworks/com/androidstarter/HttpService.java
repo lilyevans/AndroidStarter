@@ -3,6 +3,7 @@ package thoughtworks.com.androidstarter;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
 
 
 public class HttpService {
@@ -45,6 +46,27 @@ public class HttpService {
         return jsonTags;
     }
 
+    public JSONArray getSongs(ArrayList<String> songIds) {
+        JSONArray jsonSongs;
+        String jsonSongsString = "[{'id':1,'name':'Norf Norf'," +
+                "'type':'basic','description':'some descriptive text', " +
+                "'cover_url': 'http://www.somecoverurl.com/img.jpg'}, " +
+                "{'id':2,'name':'Jump Off The Roof'," +
+                "'type':'basic','description':'some descriptive text', " +
+                "'cover_url': 'http://www.somecoverurl.com/img.jpg'}, " +
+                "{'id':3,'name':'Birds & Bees'," +
+                "'type':'basic','description':'some descriptive text', " +
+                "'cover_url': 'http://www.somecoverurl.com/img.jpg'}]";
+
+        try {
+            jsonSongs = new JSONArray(jsonSongsString);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            jsonSongs = null;
+        }
+        return jsonSongs;
+    }
+
 // getSongs:
 // GET /api/1/songs/multi
 //
@@ -56,8 +78,8 @@ public class HttpService {
 //    id: integer song id
 //    name: song name
 //    type: one of {'basic', 'artist', 'stream'
-//        description: some descriptive text
-//        cover_url: URL for the song's cover art.
+//    description: some descriptive text
+//    cover_url: URL for the song's cover art.
 
 
 
