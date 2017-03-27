@@ -48,6 +48,6 @@ public class SongServiceTest {
         ArrayList<Song> actualSongs  = songService.getSongs(new ArrayList<String>());
 
         assertThat(actualSongs.size(), is(equalTo(1)));
-        assertThat(actualSongs.get(0).getName(), is(equalTo("Norf Norf")));
+        assertThat(actualSongs.get(0).toString(), is(equalTo("Norf Norf")));
     }
 }

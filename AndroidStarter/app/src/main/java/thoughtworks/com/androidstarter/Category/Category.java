@@ -11,10 +11,6 @@ public class Category {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public String getId() {
         return id;
     }

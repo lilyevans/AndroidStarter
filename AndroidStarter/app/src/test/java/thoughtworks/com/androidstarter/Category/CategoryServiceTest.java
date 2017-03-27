@@ -54,7 +54,7 @@ public class CategoryServiceTest {
 
         actualCategoryList = categoryService.getCategories();
 
-        assertThat(actualCategoryList.get(0).getTitle(), is(equalTo("Genres")));
+        assertThat(actualCategoryList.get(0).toString(), is(equalTo("Genres")));
         assertThat(actualCategoryList.get(1).getId(), is(equalTo("2")));
 
     }

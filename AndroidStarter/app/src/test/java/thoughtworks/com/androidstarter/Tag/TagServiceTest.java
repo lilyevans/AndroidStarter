@@ -64,7 +64,7 @@ public class TagServiceTest {
 
         Tag tag = tagService.parseTag(new JSONObject("{'name':'Name', 'id':'1', 'song_ids':[1,2,3]}"));
 
-        assertThat(tag.getName(), is(equalTo("Name")));
+        assertThat(tag.toString(), is(equalTo("Name")));
         assertThat(tag.getId(), is(equalTo("1")));
         assertThat(tag.getSongIds().get(0), is(equalTo("1")));
 

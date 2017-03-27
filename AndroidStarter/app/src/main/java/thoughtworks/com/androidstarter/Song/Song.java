@@ -15,10 +15,6 @@ public class Song {
         this.coverUrl = coverUrl;
     }
 
-    public String getName() {
-        return name;
-    }
-
     @Override
     public String toString() {
         return name;

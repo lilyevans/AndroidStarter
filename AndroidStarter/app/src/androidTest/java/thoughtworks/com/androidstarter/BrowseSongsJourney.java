@@ -43,7 +43,7 @@ public class BrowseSongsJourney {
         return new TypeSafeMatcher<Category>() {
             @Override
             protected boolean matchesSafely(Category category) {
-                return titleMatcher.matches(category.getTitle());
+                return titleMatcher.matches(category.toString());
             }
 
             @Override
@@ -57,7 +57,7 @@ public class BrowseSongsJourney {
         return new TypeSafeMatcher<Tag>() {
             @Override
             protected boolean matchesSafely(Tag tag) {
-                return nameMatcher.matches(tag.getName());
+                return nameMatcher.matches(tag.toString());
             }
 
             @Override
@@ -71,7 +71,7 @@ public class BrowseSongsJourney {
         return new TypeSafeMatcher<Song>() {
             @Override
             protected boolean matchesSafely(Song song) {
-                return songTitleMatcher.matches(song.getName());
+                return songTitleMatcher.matches(song.toString());
             }
 
             @Override

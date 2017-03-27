@@ -14,10 +14,6 @@ public class Tag {
         this.songIds = songIds;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String getId() {
         return id;
     }
