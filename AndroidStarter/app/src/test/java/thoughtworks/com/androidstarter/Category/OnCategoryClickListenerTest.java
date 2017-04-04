@@ -13,7 +13,7 @@ import org.robolectric.annotation.Config;
 import thoughtworks.com.androidstarter.BuildConfig;
 import thoughtworks.com.androidstarter.Tag.TagActivity;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

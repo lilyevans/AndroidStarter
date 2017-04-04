@@ -2,7 +2,9 @@ package thoughtworks.com.androidstarter.Category;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
+
 import java.util.ArrayList;
+
 import thoughtworks.com.androidstarter.R;
 
 
@@ -17,8 +19,13 @@ public class CategoryViewModel {
     }
 
     public ArrayAdapter<Category> buildArrayAdapter() {
-        ArrayList<Category> categories = categoryService.getCategories();
-        return new ArrayAdapter<Category>(context, R.layout.list_item_view, categories);
+        ArrayList<Category> categories = new ArrayList<Category>();
+        ArrayAdapter<Category> categoryAdapter = new ArrayAdapter<Category>(context, R.layout.list_item_view, categories);
+        //how do I test this was called?
+        categoryAdapter.setNotifyOnChange(true);
+        categoryService.getCategories(categoryAdapter);
+
+        return categoryAdapter;
     }
 
     public OnCategoryClickListener buildCategoryClickListener() {

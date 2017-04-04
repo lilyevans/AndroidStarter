@@ -1,46 +1,28 @@
 package thoughtworks.com.androidstarter.Tag;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import thoughtworks.com.androidstarter.HttpService;
+import retrofit2.Call;
+import thoughtworks.com.androidstarter.RetrofitInterface;
 
 public class TagService {
 
-    private HttpService httpService;
+    private RetrofitInterface retrofitInterface;
 
-    public TagService(HttpService httpService){
-        this.httpService = httpService;
+    public TagService(RetrofitInterface retrofitInterface){
+        this.retrofitInterface = retrofitInterface;
     }
 
-    public ArrayList<Tag> getTags(String categoryId) {
-        JSONArray jsonTags = httpService.getTags(categoryId);
+    public void getTags(String categoryId, ArrayAdapter<Tag> tagArrayAdapter) {
         ArrayList<Tag> tags = new ArrayList<Tag>();
 
-        for (int i = 0; i < jsonTags.length(); i++){
-            Tag tag = parseTag(jsonTags.optJSONObject(i));
-            if (tag != null){
-                tags.add(tag);
-            }
-        }
+        Call<List<Tag>> call = retrofitInterface.getTags(categoryId);
+        call.enqueue(new TagCallback(tagArrayAdapter));
 
-        return tags;
+        System.out.println(tags);
     }
 
-    public Tag parseTag(JSONObject json) {
-        Tag tag = null;
-        if (json.has("name") && json.has("id") && json.has("song_ids")){
-            String name = json.optString("name");
-            String id = json.optString("id");
-            ArrayList<String> songIds = new ArrayList<String>();
-
-            for (int i = 0; i < json.optJSONArray("song_ids").length(); i++){
-                songIds.add(String.valueOf(json.optJSONArray("song_ids").optInt(i)));
-            }
-            tag = new Tag(name, id, songIds);
-        }
-        return tag;
-    }
 }

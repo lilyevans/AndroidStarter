@@ -11,8 +11,7 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        HttpService httpService = new HttpService();
-        CategoryService categoryService = new CategoryService(httpService);
+        CategoryService categoryService = new CategoryService(HttpService.buildRetrofitInterface());
         CategoryViewModel categoryViewModel = new CategoryViewModel(this, categoryService);
 
         CategoryView categoryView = new CategoryView(categoryViewModel);

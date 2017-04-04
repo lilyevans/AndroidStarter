@@ -1,31 +1,22 @@
 package thoughtworks.com.androidstarter.Category;
 
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.util.ArrayList;
-
 import thoughtworks.com.androidstarter.BuildConfig;
-import thoughtworks.com.androidstarter.Category.Category;
-import thoughtworks.com.androidstarter.Category.CategoryActivity;
-import thoughtworks.com.androidstarter.Category.CategoryService;
-import thoughtworks.com.androidstarter.Category.CategoryViewModel;
-import thoughtworks.com.androidstarter.Category.OnCategoryClickListener;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.isA;
-import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 @Config(constants = BuildConfig.class, sdk = 25)
 @RunWith(RobolectricTestRunner.class)
@@ -42,18 +33,17 @@ public class CategoryViewModelTest {
     }
 
     @Test
+    public void name() throws Exception {
+
+    }
+
+    @Test
     public void shouldBuildArrayAdapterWithCategoriesFromCategoryService() throws Exception {
-        Category category = mock(Category.class);
-        ArrayList<Category> mockCategories = new ArrayList<Category>();
-        mockCategories.add(category);
-
-        when(categoryService.getCategories()).thenReturn(mockCategories);
-
         viewModel = new CategoryViewModel(categoryActivity, categoryService);
 
         ArrayAdapter<Category> actualAdapter = viewModel.buildArrayAdapter();
 
-        assertThat(actualAdapter.getItem(0), is(equalTo(category)));
+        verify(categoryService).getCategories(Matchers.any(ArrayAdapter.class));
     }
 
     @Test

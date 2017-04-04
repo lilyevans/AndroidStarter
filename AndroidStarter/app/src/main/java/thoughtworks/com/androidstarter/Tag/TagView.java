@@ -1,6 +1,5 @@
 package thoughtworks.com.androidstarter.Tag;
 
-import android.content.Context;
 import android.widget.ListView;
 
 import thoughtworks.com.androidstarter.R;

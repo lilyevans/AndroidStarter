@@ -15,12 +15,11 @@ public class TagActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        HttpService httpService = new HttpService();
-        TagService tagService = new TagService(httpService);
+        TagService tagService = new TagService(HttpService.buildRetrofitInterface());
+        System.out.println(intent.getStringExtra("categoryID"));
         TagViewModel tagViewModel = new TagViewModel(this, tagService, intent.getStringExtra("categoryID"));
 
         TagView tagView = new TagView(tagViewModel);
-
         setContentView(tagView);
     }
 }

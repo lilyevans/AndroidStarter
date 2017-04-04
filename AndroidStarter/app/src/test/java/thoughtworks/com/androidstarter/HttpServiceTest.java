@@ -11,60 +11,17 @@ import java.util.ArrayList;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.Is.is;
 
 @Config(constants = BuildConfig.class, sdk = 25)
 @RunWith(RobolectricTestRunner.class)
 public class HttpServiceTest {
     @Test
-    public void shouldReturnCategoryJSONArray() throws Exception {
-        HttpService httpService = new HttpService();
+    public void shouldBuildRetrofitInterfaceInstance() throws Exception {
+        RetrofitInterface actualRetrofit = HttpService.buildRetrofitInterface();
 
-        JSONArray jsonCategories = httpService.getCategories();
-        JSONObject expectedJson0 = new JSONObject("{'title':'Genres','id':'1'}");
-        JSONObject expectedJson1 = new JSONObject("{'title' : 'Artists', 'id': '2'}");
-        JSONObject expectedJson2 = new JSONObject("{'title' : 'Albums', 'id': '3'}");
-
-        assertThat(jsonCategories.length(), is(equalTo(3)));
-        assertThat(jsonCategories.getJSONObject(0).toString(), is(equalTo(expectedJson0.toString())));
-        assertThat(jsonCategories.getJSONObject(1).toString(), is(equalTo(expectedJson1.toString())));
-        assertThat(jsonCategories.getJSONObject(2).toString(), is(equalTo(expectedJson2.toString())));
-    }
-
-    @Test
-    public void shouldReturnTagJSONArray() throws Exception {
-        HttpService httpService = new HttpService();
-
-        JSONArray jsonTags = httpService.getTags("1");
-        JSONObject expectedJSON0 = new JSONObject("{'name':'Hell Can Wait', 'id':'1', 'song_ids':[1]}");
-        JSONObject expectedJSON1 = new JSONObject("{'name':'Summertime 06', 'id':'2', 'song_ids':[2,3]}");
-        JSONObject expectedJSON2 = new JSONObject("{'name':'Prima Donna', 'id':'3', 'song_ids':[4,5]}");
-
-        assertThat(jsonTags.length(), is(equalTo(3)));
-        assertThat(jsonTags.getJSONObject(0).toString(), is(equalTo(expectedJSON0.toString())));
-        assertThat(jsonTags.getJSONObject(0).toString(), is(equalTo(expectedJSON0.toString())));
-        assertThat(jsonTags.getJSONObject(0).toString(), is(equalTo(expectedJSON0.toString())));
-    }
-
-    @Test
-    public void shouldReturnSongJSONArray() throws Exception {
-        HttpService httpService = new HttpService();
-
-        JSONArray jsonSongs = httpService.getSongs(new ArrayList<String>());
-        JSONObject expectedJSON0 = new JSONObject("{'id':1,'name':'Norf Norf'," +
-        "'type':'basic','description':'some descriptive text', " +
-                "'cover_url': 'http://www.somecoverurl.com/img.jpg'}");
-        JSONObject expectedJSON1 = new JSONObject("{'id':2,'name':'Jump Off The Roof'," +
-        "'type':'basic','description':'some descriptive text', " +
-                "'cover_url': 'http://www.somecoverurl.com/img.jpg'}");
-        JSONObject expectedJSON2 = new JSONObject("{'id':3,'name':'Birds & Bees'," +
-                "'type':'basic','description':'some descriptive text', " +
-                "'cover_url': 'http://www.somecoverurl.com/img.jpg'}");
-
-        assertThat(jsonSongs.length(), is(equalTo(3)));
-        assertThat(jsonSongs.getJSONObject(0).toString(), is(equalTo(expectedJSON0.toString())));
-        assertThat(jsonSongs.getJSONObject(1).toString(), is(equalTo(expectedJSON1.toString())));
-        assertThat(jsonSongs.getJSONObject(2).toString(), is(equalTo(expectedJSON2.toString())));
+        assertThat(actualRetrofit, is(notNullValue(RetrofitInterface.class)));
 
     }
 }

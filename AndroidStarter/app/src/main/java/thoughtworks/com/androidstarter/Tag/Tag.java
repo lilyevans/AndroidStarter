@@ -1,12 +1,23 @@
 package thoughtworks.com.androidstarter.Tag;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Tag {
+    @Expose
     private ArrayList<String> songIds;
+
+    @Expose
     private String id;
+
+    @Expose
     private String name;
+
+    public Tag(){
+
+    }
 
     public Tag(String name, String id, ArrayList<String> songIds) {
         this.name = name;

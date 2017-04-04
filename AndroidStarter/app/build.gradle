@@ -30,6 +30,11 @@ dependencies {
 
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.google.code.gson:gson:2.2.+'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile 'org.glassfish:javax.annotation:10.0-b28'
     testCompile 'junit:junit:4.12'
     testCompile 'org.robolectric:robolectric:3.3.1'
     testCompile 'org.khronos:opengl-api:gl1.1-android-2.1_r1'

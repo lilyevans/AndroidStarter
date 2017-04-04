@@ -1,35 +1,27 @@
 package thoughtworks.com.androidstarter.Song;
 
 import android.content.Context;
+import android.widget.ArrayAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import retrofit2.Call;
 import thoughtworks.com.androidstarter.HttpService;
+import thoughtworks.com.androidstarter.RetrofitInterface;
 
 class SongService {
-    private HttpService httpService;
+    private RetrofitInterface retrofitInterface;
 
-    public SongService(HttpService httpService) {
-        this.httpService = httpService;
+    public SongService(RetrofitInterface retrofitInterface) {
+        this.retrofitInterface = retrofitInterface;
     }
 
-    public ArrayList<Song> getSongs(ArrayList<String> songIds) {
-        JSONArray jsonArray = httpService.getSongs(songIds);
-        ArrayList<Song> songs = new ArrayList<Song>();
-
-        for (int i = 0; i < jsonArray.length(); i++){
-            JSONObject json = jsonArray.optJSONObject(i);
-            int id = json.optInt("id");
-            String name = json.optString("name");
-            String type = json.optString("type");
-            String description = json.optString("description");
-            String coverUrl = json.optString("cover_url");
-            songs.add(new Song(id, name, type, description, coverUrl));
-        }
-
-        return songs;
+    public void getSongs(ArrayList<String> songIds, ArrayAdapter<Song> songArrayAdapter) {
+        Call<List<Song>> call = retrofitInterface.getSongs(songIds);
+        call.enqueue(new SongCallback(songArrayAdapter));
     }
 }

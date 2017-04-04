@@ -12,30 +12,22 @@ import java.util.ArrayList;
 
 import thoughtworks.com.androidstarter.BuildConfig;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 @Config(constants = BuildConfig.class, sdk = 25)
 @RunWith(RobolectricTestRunner.class)
 public class SongViewModelTest {
     @Test
     public void shouldBuildArrayAdapterForSong() throws Exception {
-        Song song = mock(Song.class);
-        ArrayList<Song> songs = new ArrayList<Song>();
-        songs.add(song);
 
         SongService songService = mock(SongService.class);
-        when(songService.getSongs(any(ArrayList.class))).thenReturn(songs);
-
         SongActivity songActivity = Robolectric.buildActivity(SongActivity.class).get();
 
         SongViewModel songViewModel = new SongViewModel(songActivity, songService, new ArrayList<String>());
         ArrayAdapter<Song> actualArrayAdapter = songViewModel.buildArrayAdapter();
 
-        assertThat(actualArrayAdapter.getItem(0), is(equalTo(song)));
+        verify(songService).getSongs(any(ArrayList.class), any(ArrayAdapter.class));
     }
 }

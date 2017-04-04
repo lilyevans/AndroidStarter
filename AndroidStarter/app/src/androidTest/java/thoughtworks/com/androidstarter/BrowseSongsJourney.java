@@ -1,5 +1,7 @@
 package thoughtworks.com.androidstarter;
 
+import android.support.test.espresso.base.IdlingResourceRegistry;
+import android.support.test.espresso.base.IdlingResourceRegistry_Factory;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -17,6 +19,7 @@ import thoughtworks.com.androidstarter.Song.Song;
 import thoughtworks.com.androidstarter.Tag.Tag;
 
 import static android.support.test.espresso.Espresso.onData;
+import static android.support.test.espresso.Espresso.registerIdlingResources;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -32,14 +35,16 @@ public class BrowseSongsJourney {
 
     @Test
     public void browseSongs() throws Exception {
+        registerIdlingResources(new CategoryViewIdlingResource(activityActivityTestRule.getActivity()));
+
         onData(withTitle(equalTo("Albums"))).check(matches(isDisplayed()));
         onData(withTitle(equalTo("Albums"))).perform(click());
         onData(withName(equalTo("Summertime 06"))).check(matches(isDisplayed()));
         onData(withName(equalTo("Summertime 06"))).perform(click());
-        onData(withSongName(equalTo("Norf Norf"))).check(matches(isDisplayed()));
+        onData(withSongName(equalTo("Jump Off The Roof"))).check(matches(isDisplayed()));
     }
 
-    public Matcher withTitle(final Matcher titleMatcher) {
+    private Matcher withTitle(final Matcher titleMatcher) {
         return new TypeSafeMatcher<Category>() {
             @Override
             protected boolean matchesSafely(Category category) {
@@ -53,7 +58,7 @@ public class BrowseSongsJourney {
         };
     }
 
-    public Matcher withName(final Matcher nameMatcher) {
+    private Matcher withName(final Matcher nameMatcher) {
         return new TypeSafeMatcher<Tag>() {
             @Override
             protected boolean matchesSafely(Tag tag) {
@@ -67,7 +72,7 @@ public class BrowseSongsJourney {
         };
     }
 
-    public Matcher withSongName(final Matcher songTitleMatcher) {
+    private Matcher withSongName(final Matcher songTitleMatcher) {
         return new TypeSafeMatcher<Song>() {
             @Override
             protected boolean matchesSafely(Song song) {

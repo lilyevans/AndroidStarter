@@ -19,8 +19,11 @@ public class TagViewModel {
     }
 
     public ArrayAdapter<Tag> buildArrayAdapter() {
-        ArrayList<Tag> tags = tagService.getTags(categoryId);
-        return new ArrayAdapter<Tag>(context, R.layout.list_item_view, tags);
+        ArrayAdapter<Tag> tagArrayAdapter = new ArrayAdapter<Tag>(context, R.layout.list_item_view, new ArrayList<Tag>());
+        tagArrayAdapter.setNotifyOnChange(true);
+        tagService.getTags(categoryId, tagArrayAdapter);
+
+        return tagArrayAdapter;
     }
 
     public Context getContext() {

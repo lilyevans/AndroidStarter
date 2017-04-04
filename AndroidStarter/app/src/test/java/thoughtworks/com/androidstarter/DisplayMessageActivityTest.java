@@ -13,12 +13,7 @@ import thoughtworks.com.androidstarter.Practice.DisplayMessageActivity;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Matchers.isNotNull;
-import static org.mockito.Mockito.mock;
-import static org.robolectric.Shadows.shadowOf;
 
 
 @Config(constants = BuildConfig.class, sdk = 25)
