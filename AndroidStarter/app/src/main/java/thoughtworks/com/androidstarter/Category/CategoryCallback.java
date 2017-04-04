@@ -27,16 +27,10 @@ public class CategoryCallback implements Callback<List<Category>> {
             }
 
             categoryArrayAdapter.addAll(categories);
-            System.out.println(categories);
         }
-        else {
-            System.out.println(response.errorBody());
-        }
-
     }
 
     @Override
     public void onFailure(Call<List<Category>> call, Throwable t) {
-        System.out.println(t);
     }
 }

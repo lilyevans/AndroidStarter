@@ -21,8 +21,6 @@ public class TagService {
 
         Call<List<Tag>> call = retrofitInterface.getTags(categoryId);
         call.enqueue(new TagCallback(tagArrayAdapter));
-
-        System.out.println(tags);
     }
 
 }

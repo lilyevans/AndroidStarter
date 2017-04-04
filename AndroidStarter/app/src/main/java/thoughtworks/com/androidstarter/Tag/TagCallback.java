@@ -28,16 +28,11 @@ class TagCallback implements Callback<List<Tag>> {
             }
 
             tagArrayAdapter.addAll(tags);
-            System.out.println(tags);
-
-        }
-        else {
-            System.out.println(response.errorBody());
         }
     }
 
     @Override
     public void onFailure(Call<List<Tag>> call, Throwable t) {
-        System.out.println(t);
+
     }
 }

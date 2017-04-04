@@ -14,7 +14,6 @@ public class OnCategoryClickListener implements AdapterView.OnItemClickListener 
         Intent intent = new Intent(parent.getContext(), TagActivity.class);
         intent.putExtra("categoryID", category.getId());
 
-        System.out.println(category.getId());
         parent.getContext().startActivity(intent);
     }
 }
