@@ -25,10 +25,6 @@ public class Tag {
         this.songIds = songIds;
     }
 
-    public String getId() {
-        return id;
-    }
-
     public ArrayList<String> getSongIds() {
         return songIds;
     }
