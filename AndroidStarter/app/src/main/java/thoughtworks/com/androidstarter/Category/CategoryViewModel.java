@@ -21,11 +21,13 @@ public class CategoryViewModel {
     public ArrayAdapter<Category> buildArrayAdapter() {
         ArrayList<Category> categories = new ArrayList<Category>();
         ArrayAdapter<Category> categoryAdapter = new ArrayAdapter<Category>(context, R.layout.list_item_view, categories);
-        //how do I test this was called?
-        categoryAdapter.setNotifyOnChange(true);
-        categoryService.getCategories(categoryAdapter);
 
         return categoryAdapter;
+    }
+
+    public void populateAdapter(ArrayAdapter<Category> categoryAdapter) {
+        categoryAdapter.setNotifyOnChange(true);
+        categoryService.getCategories(categoryAdapter);
     }
 
     public OnCategoryClickListener buildCategoryClickListener() {
@@ -35,4 +37,5 @@ public class CategoryViewModel {
     public Context getContext(){
         return context;
     }
+
 }

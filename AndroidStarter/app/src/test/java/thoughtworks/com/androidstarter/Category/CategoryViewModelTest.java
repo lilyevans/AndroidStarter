@@ -12,7 +12,9 @@ import org.robolectric.annotation.Config;
 
 import thoughtworks.com.androidstarter.BuildConfig;
 
+import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.isA;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
@@ -33,17 +35,23 @@ public class CategoryViewModelTest {
     }
 
     @Test
-    public void name() throws Exception {
+    public void shouldNotifyAdapterOfDataChangesAndAddCategoriesFromCategoryService() throws Exception {
+        viewModel = new CategoryViewModel(categoryActivity, categoryService);
+        ArrayAdapter<Category> adapter = mock(ArrayAdapter.class);
+
+        viewModel.populateAdapter(adapter);
+
+        verify(adapter).setNotifyOnChange(true);
+        verify(categoryService).getCategories(adapter);
 
     }
 
     @Test
-    public void shouldBuildArrayAdapterWithCategoriesFromCategoryService() throws Exception {
+    public void shouldBuildNewCategoryArrayAdapter() throws Exception {
         viewModel = new CategoryViewModel(categoryActivity, categoryService);
-
         ArrayAdapter<Category> actualAdapter = viewModel.buildArrayAdapter();
 
-        verify(categoryService).getCategories(Matchers.any(ArrayAdapter.class));
+        assertThat(actualAdapter, is(instanceOf(ArrayAdapter.class)));
     }
 
     @Test
