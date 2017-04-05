@@ -11,7 +11,9 @@ import org.robolectric.annotation.Config;
 
 import thoughtworks.com.androidstarter.BuildConfig;
 
-import static org.mockito.Matchers.any;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -23,12 +25,17 @@ public class TagViewTest {
     private TagViewModel viewModel;
     private TagActivity tagActivity;
     private TagView tagView;
+    private ArrayAdapter<Tag> mockAdapter;
 
     @Before
     public void setUp() throws Exception {
         viewModel = mock(TagViewModel.class);
         tagActivity = Robolectric.buildActivity(TagActivity.class).get();
         when(viewModel.getContext()).thenReturn(tagActivity);
+
+        mockAdapter = mock(ArrayAdapter.class);
+        when(mockAdapter.getViewTypeCount()).thenReturn(1);
+        when(viewModel.buildArrayAdapter()).thenReturn(mockAdapter);
 
         tagView = new TagView(viewModel);
     }
@@ -40,7 +47,14 @@ public class TagViewTest {
 
     @Test
     public void shouldPopulateArrayAdapterUsingTagViewModel() throws Exception {
-        verify(viewModel).populateAdapter(any(ArrayAdapter.class));
+        verify(viewModel).populateAdapter(mockAdapter);
+    }
+
+    @Test
+    public void shouldSetViewsAdapterToBeAdapterPreparedByTagViewModel() throws Exception {
+        ArrayAdapter<Tag> actualAdapter = (ArrayAdapter<Tag>) tagView.getAdapter();
+
+        assertThat(actualAdapter, is(equalTo(mockAdapter)));
     }
 
     @Test
