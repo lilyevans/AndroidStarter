@@ -20,13 +20,16 @@ public class SongViewModel {
 
     public ArrayAdapter<Song> buildArrayAdapter() {
         ArrayAdapter<Song> songArrayAdapter = new ArrayAdapter<Song>(context, R.layout.list_item_view, new ArrayList<Song>());
-        songArrayAdapter.setNotifyOnChange(true);
-        songService.getSongs(songIds, songArrayAdapter);
 
         return songArrayAdapter;
     }
 
     public Context getContext() {
         return context;
+    }
+
+    public void populateAdapter(ArrayAdapter<Song> songArrayAdapter) {
+        songArrayAdapter.setNotifyOnChange(true);
+        songService.getSongs(songIds, songArrayAdapter);
     }
 }
