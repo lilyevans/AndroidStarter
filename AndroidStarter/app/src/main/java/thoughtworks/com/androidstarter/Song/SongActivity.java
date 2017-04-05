@@ -13,8 +13,7 @@ public class SongActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        HttpService httpService = new HttpService();
-        SongService songService = new SongService(httpService.buildRetrofitInterface());
+        SongService songService = new SongService(HttpService.buildRetrofitInterface());
         SongViewModel songViewModel = new SongViewModel(songService, intent.getStringArrayListExtra("songIDs"));
         SongView songView = new SongView(this, songViewModel);
 
