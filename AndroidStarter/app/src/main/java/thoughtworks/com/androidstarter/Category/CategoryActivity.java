@@ -3,7 +3,9 @@ package thoughtworks.com.androidstarter.Category;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import thoughtworks.com.androidstarter.HttpService;
+import thoughtworks.com.androidstarter.CategoryComponent;
+import thoughtworks.com.androidstarter.DaggerCategoryComponent;
+import thoughtworks.com.androidstarter.CategoryModule;
 
 public class CategoryActivity extends AppCompatActivity {
 
@@ -11,8 +13,8 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        CategoryService categoryService = new CategoryService(HttpService.buildRetrofitInterface());
-        CategoryViewModel categoryViewModel = new CategoryViewModel(categoryService);
+        CategoryComponent component = DaggerCategoryComponent.builder().categoryModule(new CategoryModule()).build();
+        CategoryViewModel categoryViewModel = component.provideCategoryViewModel();
 
         CategoryView categoryView = new CategoryView(this, categoryViewModel);
         setContentView(categoryView);

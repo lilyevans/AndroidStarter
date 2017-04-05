@@ -5,6 +5,8 @@ import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import thoughtworks.com.androidstarter.R;
 
 
@@ -12,6 +14,7 @@ public class CategoryViewModel {
 
     private CategoryService categoryService;
 
+    @Inject
     public CategoryViewModel(CategoryService categoryService){
         this.categoryService = categoryService;
     }

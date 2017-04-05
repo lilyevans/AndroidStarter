@@ -4,10 +4,13 @@ import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import javax.inject.Inject;
+
 import thoughtworks.com.androidstarter.R;
 
 
 public class CategoryView extends ListView {
+    @Inject
     public CategoryView(Context context, CategoryViewModel categoryViewModel) {
         super(context);
 

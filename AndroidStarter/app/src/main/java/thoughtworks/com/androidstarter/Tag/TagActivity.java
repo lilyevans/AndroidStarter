@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import thoughtworks.com.androidstarter.HttpService;
-import thoughtworks.com.androidstarter.R;
+import thoughtworks.com.androidstarter.HttpModule;
 
 public class TagActivity extends AppCompatActivity {
 
@@ -15,7 +14,7 @@ public class TagActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        TagService tagService = new TagService(HttpService.buildRetrofitInterface());
+        TagService tagService = new TagService(HttpModule.provideRetrofitInterface());
         TagViewModel tagViewModel = new TagViewModel(tagService, intent.getStringExtra("categoryID"));
 
         TagView tagView = new TagView(this, tagViewModel);

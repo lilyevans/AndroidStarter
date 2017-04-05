@@ -11,10 +11,10 @@ import static org.hamcrest.core.Is.is;
 
 @Config(constants = BuildConfig.class, sdk = 25)
 @RunWith(RobolectricTestRunner.class)
-public class HttpServiceTest {
+public class HttpModuleTest {
     @Test
     public void shouldBuildRetrofitInterfaceInstance() throws Exception {
-        RetrofitInterface actualRetrofit = HttpService.buildRetrofitInterface();
+        RetrofitInterface actualRetrofit = HttpModule.provideRetrofitInterface();
 
         assertThat(actualRetrofit, is(notNullValue(RetrofitInterface.class)));
 
