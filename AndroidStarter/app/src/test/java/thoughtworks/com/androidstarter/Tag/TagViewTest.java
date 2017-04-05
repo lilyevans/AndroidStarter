@@ -31,18 +31,17 @@ public class TagViewTest {
     public void setUp() throws Exception {
         viewModel = mock(TagViewModel.class);
         tagActivity = Robolectric.buildActivity(TagActivity.class).get();
-        when(viewModel.getContext()).thenReturn(tagActivity);
 
         mockAdapter = mock(ArrayAdapter.class);
         when(mockAdapter.getViewTypeCount()).thenReturn(1);
-        when(viewModel.buildArrayAdapter()).thenReturn(mockAdapter);
+        when(viewModel.buildArrayAdapter(tagActivity)).thenReturn(mockAdapter);
 
-        tagView = new TagView(viewModel);
+        tagView = new TagView(tagActivity, viewModel);
     }
 
     @Test
     public void shouldBuildArrayAdapterUsingTagViewModel() throws Exception {
-        verify(viewModel).buildArrayAdapter();
+        verify(viewModel).buildArrayAdapter(tagActivity);
     }
 
     @Test

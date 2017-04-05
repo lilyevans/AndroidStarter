@@ -9,16 +9,14 @@ import thoughtworks.com.androidstarter.R;
 
 public class TagViewModel {
     private String categoryId;
-    private Context context;
     private TagService tagService;
 
-    public TagViewModel(Context context, TagService tagService, String categoryId) {
-        this.context = context;
+    public TagViewModel(TagService tagService, String categoryId) {
         this.tagService = tagService;
         this.categoryId = categoryId;
     }
 
-    public ArrayAdapter<Tag> buildArrayAdapter() {
+    public ArrayAdapter<Tag> buildArrayAdapter(Context context) {
         ArrayAdapter<Tag> tagArrayAdapter = new ArrayAdapter<Tag>(context, R.layout.list_item_view, new ArrayList<Tag>());
 
         return tagArrayAdapter;
@@ -27,10 +25,6 @@ public class TagViewModel {
     public void populateAdapter(ArrayAdapter<Tag> tagArrayAdapter) {
         tagArrayAdapter.setNotifyOnChange(true);
         tagService.getTags(categoryId, tagArrayAdapter);
-    }
-
-    public Context getContext() {
-        return context;
     }
 
     public OnTagClickListener buildTagClickListener() {

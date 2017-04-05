@@ -1,44 +1,42 @@
 package thoughtworks.com.androidstarter.Tag;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
-
-import thoughtworks.com.androidstarter.BuildConfig;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.isA;
 import static org.hamcrest.core.Is.is;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@Config(constants = BuildConfig.class, sdk = 25)
-@RunWith(RobolectricTestRunner.class)
+
 public class TagViewModelTest {
 
     private TagService tagService;
-    private TagActivity tagActivity;
     private TagViewModel tagViewModel;
+    private String categoryId;
 
     @Before
     public void setUp() throws Exception {
         tagService = mock(TagService.class);
-        tagActivity = Robolectric.buildActivity(TagActivity.class).get();
-        tagViewModel = new TagViewModel(tagActivity, tagService, "1");
+        categoryId = "1";
+
+        tagViewModel = new TagViewModel(tagService, categoryId);
     }
 
     @Test
     public void shouldBuildNewArrayAdapterWithTagsFromTagService() throws Exception {
-        ArrayAdapter<Tag> actualAdapter = tagViewModel.buildArrayAdapter();
+        Context mockContext = mock(Context.class);
+        when(mockContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(mock(LayoutInflater.class));
+
+        ArrayAdapter<Tag> actualAdapter = tagViewModel.buildArrayAdapter(mockContext);
 
         assertThat(actualAdapter, is(instanceOf(ArrayAdapter.class)));
     }
@@ -50,7 +48,7 @@ public class TagViewModelTest {
         tagViewModel.populateAdapter(adapter);
 
         verify(adapter).setNotifyOnChange(true);
-        verify(tagService).getTags("1", adapter);
+        verify(tagService).getTags(categoryId, adapter);
     }
 
     @Test

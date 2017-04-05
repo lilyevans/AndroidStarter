@@ -16,9 +16,9 @@ public class TagActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         TagService tagService = new TagService(HttpService.buildRetrofitInterface());
-        TagViewModel tagViewModel = new TagViewModel(this, tagService, intent.getStringExtra("categoryID"));
+        TagViewModel tagViewModel = new TagViewModel(tagService, intent.getStringExtra("categoryID"));
 
-        TagView tagView = new TagView(tagViewModel);
+        TagView tagView = new TagView(this, tagViewModel);
         setContentView(tagView);
     }
 }
