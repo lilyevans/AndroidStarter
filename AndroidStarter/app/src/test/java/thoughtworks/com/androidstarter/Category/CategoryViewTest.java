@@ -23,26 +23,25 @@ import static org.mockito.Mockito.when;
 public class CategoryViewTest {
 
     private CategoryViewModel categoryViewModel;
-    private CategoryActivity activity;
     private CategoryView categoryView;
     private ArrayAdapter<Category> mockAdapter;
+    private CategoryActivity activity;
 
     @Before
     public void setUp() throws Exception {
         categoryViewModel = mock(CategoryViewModel.class);
         activity = Robolectric.buildActivity(CategoryActivity.class).get();
-        when(categoryViewModel.getContext()).thenReturn(activity);
 
         mockAdapter = mock(ArrayAdapter.class);
         when(mockAdapter.getViewTypeCount()).thenReturn(1);
-        when(categoryViewModel.buildArrayAdapter()).thenReturn(mockAdapter);
+        when(categoryViewModel.buildArrayAdapter(activity)).thenReturn(mockAdapter);
 
-        categoryView = new CategoryView(categoryViewModel);
+        categoryView = new CategoryView(activity, categoryViewModel);
     }
 
     @Test
     public void shouldGetArrayAdapterFromCategoryViewModel() throws Exception {
-        verify(categoryViewModel).buildArrayAdapter();
+        verify(categoryViewModel).buildArrayAdapter(activity);
     }
 
     @Test

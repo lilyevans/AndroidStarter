@@ -8,10 +8,10 @@ import thoughtworks.com.androidstarter.R;
 
 
 public class CategoryView extends ListView {
-    public CategoryView(CategoryViewModel categoryViewModel) {
-        super(categoryViewModel.getContext());
+    public CategoryView(Context context, CategoryViewModel categoryViewModel) {
+        super(context);
 
-        ArrayAdapter<Category> categoryAdapter = categoryViewModel.buildArrayAdapter();
+        ArrayAdapter<Category> categoryAdapter = categoryViewModel.buildArrayAdapter(context);
         categoryViewModel.populateAdapter(categoryAdapter);
         setAdapter(categoryAdapter);
 

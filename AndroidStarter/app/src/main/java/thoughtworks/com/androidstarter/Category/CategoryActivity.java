@@ -12,9 +12,9 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         CategoryService categoryService = new CategoryService(HttpService.buildRetrofitInterface());
-        CategoryViewModel categoryViewModel = new CategoryViewModel(this, categoryService);
+        CategoryViewModel categoryViewModel = new CategoryViewModel(categoryService);
 
-        CategoryView categoryView = new CategoryView(categoryViewModel);
+        CategoryView categoryView = new CategoryView(this, categoryViewModel);
         setContentView(categoryView);
     }
 }

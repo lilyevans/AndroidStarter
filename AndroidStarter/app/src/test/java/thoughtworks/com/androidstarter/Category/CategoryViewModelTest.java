@@ -1,5 +1,7 @@
 package thoughtworks.com.androidstarter.Category;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
 
 import org.junit.Before;
@@ -18,20 +20,18 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@Config(constants = BuildConfig.class, sdk = 25)
-@RunWith(RobolectricTestRunner.class)
+
 public class CategoryViewModelTest {
 
-    private CategoryActivity categoryActivity;
     private CategoryViewModel viewModel;
     private CategoryService categoryService;
 
     @Before
     public void setUp() throws Exception {
-        categoryActivity = Robolectric.buildActivity(CategoryActivity.class).get();
         categoryService = mock(CategoryService.class);
-        viewModel = new CategoryViewModel(categoryActivity, categoryService);
+        viewModel = new CategoryViewModel(categoryService);
     }
 
     @Test
@@ -42,12 +42,14 @@ public class CategoryViewModelTest {
 
         verify(adapter).setNotifyOnChange(true);
         verify(categoryService).getCategories(adapter);
-
     }
 
     @Test
     public void shouldBuildNewCategoryArrayAdapter() throws Exception {
-        ArrayAdapter<Category> actualAdapter = viewModel.buildArrayAdapter();
+        Context mockContext = mock(Context.class);
+        when(mockContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(mock(LayoutInflater.class));
+
+        ArrayAdapter<Category> actualAdapter = viewModel.buildArrayAdapter(mockContext);
 
         assertThat(actualAdapter, is(instanceOf(ArrayAdapter.class)));
     }
@@ -58,6 +60,5 @@ public class CategoryViewModelTest {
 
         assertNotNull(actualClickListener);
         assertThat(actualClickListener, isA(OnCategoryClickListener.class));
-
     }
 }

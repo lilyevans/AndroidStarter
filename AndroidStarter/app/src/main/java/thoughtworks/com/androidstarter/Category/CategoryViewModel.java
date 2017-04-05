@@ -11,14 +11,12 @@ import thoughtworks.com.androidstarter.R;
 public class CategoryViewModel {
 
     private CategoryService categoryService;
-    private Context context;
 
-    public CategoryViewModel(Context context, CategoryService categoryService){
-        this.context = context;
+    public CategoryViewModel(CategoryService categoryService){
         this.categoryService = categoryService;
     }
 
-    public ArrayAdapter<Category> buildArrayAdapter() {
+    public ArrayAdapter<Category> buildArrayAdapter(Context context) {
         ArrayList<Category> categories = new ArrayList<Category>();
         ArrayAdapter<Category> categoryAdapter = new ArrayAdapter<Category>(context, R.layout.list_item_view, categories);
 
@@ -33,9 +31,4 @@ public class CategoryViewModel {
     public OnCategoryClickListener buildCategoryClickListener() {
         return new OnCategoryClickListener();
     }
-
-    public Context getContext(){
-        return context;
-    }
-
 }
