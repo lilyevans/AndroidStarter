@@ -32,11 +32,11 @@ public class CategoryViewModelTest {
     public void setUp() throws Exception {
         categoryActivity = Robolectric.buildActivity(CategoryActivity.class).get();
         categoryService = mock(CategoryService.class);
+        viewModel = new CategoryViewModel(categoryActivity, categoryService);
     }
 
     @Test
     public void shouldNotifyAdapterOfDataChangesAndAddCategoriesFromCategoryService() throws Exception {
-        viewModel = new CategoryViewModel(categoryActivity, categoryService);
         ArrayAdapter<Category> adapter = mock(ArrayAdapter.class);
 
         viewModel.populateAdapter(adapter);
@@ -48,7 +48,6 @@ public class CategoryViewModelTest {
 
     @Test
     public void shouldBuildNewCategoryArrayAdapter() throws Exception {
-        viewModel = new CategoryViewModel(categoryActivity, categoryService);
         ArrayAdapter<Category> actualAdapter = viewModel.buildArrayAdapter();
 
         assertThat(actualAdapter, is(instanceOf(ArrayAdapter.class)));
@@ -56,7 +55,6 @@ public class CategoryViewModelTest {
 
     @Test
     public void shouldBuildOnItemClickListenerForCategories() throws Exception {
-        viewModel = new CategoryViewModel(categoryActivity, categoryService);
         OnCategoryClickListener actualClickListener = viewModel.buildCategoryClickListener();
 
         assertNotNull(actualClickListener);
