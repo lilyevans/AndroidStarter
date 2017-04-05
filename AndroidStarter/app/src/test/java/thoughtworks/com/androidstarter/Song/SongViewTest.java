@@ -14,7 +14,6 @@ import thoughtworks.com.androidstarter.BuildConfig;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -32,18 +31,17 @@ public class SongViewTest {
     public void setUp() throws Exception {
         songViewModel = mock(SongViewModel.class);
         songActivity = Robolectric.buildActivity(SongActivity.class).get();
-        when(songViewModel.getContext()).thenReturn(songActivity);
 
         mockAdapter = mock(ArrayAdapter.class);
         when(mockAdapter.getViewTypeCount()).thenReturn(1);
-        when(songViewModel.buildArrayAdapter()).thenReturn(mockAdapter);
+        when(songViewModel.buildArrayAdapter(songActivity)).thenReturn(mockAdapter);
 
-        songView = new SongView(songViewModel);
+        songView = new SongView(songActivity, songViewModel);
     }
 
     @Test
     public void shouldBuildArrayAdapterUsingSongViewModel() throws Exception {
-        verify(songViewModel).buildArrayAdapter();
+        verify(songViewModel).buildArrayAdapter(songActivity);
     }
 
     @Test

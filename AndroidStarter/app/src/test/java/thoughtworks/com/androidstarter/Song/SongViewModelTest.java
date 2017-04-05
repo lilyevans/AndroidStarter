@@ -1,33 +1,30 @@
 package thoughtworks.com.androidstarter.Song;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
-
-import thoughtworks.com.androidstarter.BuildConfig;
 
 import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@Config(constants = BuildConfig.class, sdk = 25)
-@RunWith(RobolectricTestRunner.class)
 public class SongViewModelTest {
     @Test
     public void shouldBuildArrayAdapterForSong() throws Exception {
         SongService songService = mock(SongService.class);
-        SongActivity songActivity = Robolectric.buildActivity(SongActivity.class).get();
-        SongViewModel songViewModel = new SongViewModel(songActivity, songService, new ArrayList<String>());
+        SongViewModel songViewModel = new SongViewModel(songService, new ArrayList<String>());
 
-        ArrayAdapter<Song> actualArrayAdapter = songViewModel.buildArrayAdapter();
+        Context mockContext = mock(Context.class);
+        when(mockContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(mock(LayoutInflater.class));
+
+        ArrayAdapter<Song> actualArrayAdapter = songViewModel.buildArrayAdapter(mockContext);
 
         assertThat(actualArrayAdapter, Matchers.is(instanceOf(ArrayAdapter.class)));
     }
@@ -35,9 +32,8 @@ public class SongViewModelTest {
     @Test
     public void shouldPrepareAndPopulateArrayAdapterUsingSongService() throws Exception {
         SongService songService = mock(SongService.class);
-        SongActivity songActivity = Robolectric.buildActivity(SongActivity.class).get();
         ArrayList<String> songIds = mock(ArrayList.class);
-        SongViewModel songViewModel = new SongViewModel(songActivity, songService, songIds);
+        SongViewModel songViewModel = new SongViewModel(songService, songIds);
 
         ArrayAdapter<Song> adapter = mock(ArrayAdapter.class);
 
