@@ -20,10 +20,13 @@ public class TagViewModel {
 
     public ArrayAdapter<Tag> buildArrayAdapter() {
         ArrayAdapter<Tag> tagArrayAdapter = new ArrayAdapter<Tag>(context, R.layout.list_item_view, new ArrayList<Tag>());
-        tagArrayAdapter.setNotifyOnChange(true);
-        tagService.getTags(categoryId, tagArrayAdapter);
 
         return tagArrayAdapter;
+    }
+
+    public void populateAdapter(ArrayAdapter<Tag> tagArrayAdapter) {
+        tagArrayAdapter.setNotifyOnChange(true);
+        tagService.getTags(categoryId, tagArrayAdapter);
     }
 
     public Context getContext() {
@@ -33,4 +36,5 @@ public class TagViewModel {
     public OnTagClickListener buildTagClickListener() {
         return new OnTagClickListener();
     }
+
 }
