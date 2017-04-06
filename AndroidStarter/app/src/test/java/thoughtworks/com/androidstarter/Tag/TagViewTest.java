@@ -26,6 +26,7 @@ public class TagViewTest {
     private TagActivity tagActivity;
     private TagView tagView;
     private ArrayAdapter<Tag> mockAdapter;
+    private String categoryId;
 
     @Before
     public void setUp() throws Exception {
@@ -36,7 +37,9 @@ public class TagViewTest {
         when(mockAdapter.getViewTypeCount()).thenReturn(1);
         when(viewModel.buildArrayAdapter(tagActivity)).thenReturn(mockAdapter);
 
-        tagView = new TagView(tagActivity, viewModel);
+        categoryId = "1";
+
+        tagView = new TagView(tagActivity, categoryId, viewModel);
     }
 
     @Test
@@ -46,7 +49,7 @@ public class TagViewTest {
 
     @Test
     public void shouldPopulateArrayAdapterUsingTagViewModel() throws Exception {
-        verify(viewModel).populateAdapter(mockAdapter);
+        verify(viewModel).populateAdapter(categoryId, mockAdapter);
     }
 
     @Test

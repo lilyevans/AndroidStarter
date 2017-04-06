@@ -10,11 +10,11 @@ import thoughtworks.com.androidstarter.R;
 
 public class TagView extends ListView {
     @Inject
-    public TagView(Context context, TagViewModel tagViewModel) {
+    public TagView(Context context, String categoryId, TagViewModel tagViewModel) {
         super(context);
 
         ArrayAdapter<Tag> tagAdapter = tagViewModel.buildArrayAdapter(context);
-        tagViewModel.populateAdapter(tagAdapter);
+        tagViewModel.populateAdapter(categoryId, tagAdapter);
         setAdapter(tagAdapter);
 
         setOnItemClickListener(tagViewModel.buildTagClickListener());

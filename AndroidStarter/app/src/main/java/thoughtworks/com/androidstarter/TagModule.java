@@ -17,12 +17,12 @@ public class TagModule {
     }
 
     @Provides
-    TagViewModel provideTagViewModel(TagService tagService, String categoryId){
-        return new TagViewModel(tagService, categoryId);
+    TagViewModel provideTagViewModel(TagService tagService){
+        return new TagViewModel(tagService);
     }
 
     @Provides
-    TagView provideTagView(Context context, TagViewModel tagViewModel){
-        return new TagView(context, tagViewModel);
+    TagView provideTagView(Context context, String categoryId, TagViewModel tagViewModel){
+        return new TagView(context, categoryId, tagViewModel);
     }
 }

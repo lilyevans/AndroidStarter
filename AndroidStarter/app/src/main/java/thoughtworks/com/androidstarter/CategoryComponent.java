@@ -11,5 +11,5 @@ import thoughtworks.com.androidstarter.Category.CategoryView;
 public interface CategoryComponent {
 
     CategoryView provideCategoryView();
-    
+
 }

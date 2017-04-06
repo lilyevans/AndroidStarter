@@ -21,14 +21,11 @@ public class TagViewModelTest {
 
     private TagService tagService;
     private TagViewModel tagViewModel;
-    private String categoryId;
 
     @Before
     public void setUp() throws Exception {
         tagService = mock(TagService.class);
-        categoryId = "1";
-
-        tagViewModel = new TagViewModel(tagService, categoryId);
+        tagViewModel = new TagViewModel(tagService);
     }
 
     @Test
@@ -43,9 +40,10 @@ public class TagViewModelTest {
 
     @Test
     public void shouldPrepareAndPopulateArrayAdapterUsingTagService() throws Exception {
+        String categoryId = "1";
         ArrayAdapter<Tag> adapter = mock(ArrayAdapter.class);
 
-        tagViewModel.populateAdapter(adapter);
+        tagViewModel.populateAdapter(categoryId, adapter);
 
         verify(adapter).setNotifyOnChange(true);
         verify(tagService).getTags(categoryId, adapter);
@@ -57,6 +55,5 @@ public class TagViewModelTest {
 
         assertNotNull(actualOnTagClickListener);
         assertThat(actualOnTagClickListener, isA(OnTagClickListener.class));
-
     }
 }
