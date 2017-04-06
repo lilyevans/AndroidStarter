@@ -6,12 +6,9 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
-
 import thoughtworks.com.androidstarter.R;
 
 public class SongView extends ListView{
-    @Inject
     public SongView(Context context, ArrayList<String> songIds, SongViewModel songViewModel) {
         super(context);
 

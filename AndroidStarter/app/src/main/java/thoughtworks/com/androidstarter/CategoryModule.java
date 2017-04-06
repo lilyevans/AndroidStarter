@@ -19,5 +19,4 @@ public class CategoryModule {
     CategoryViewModel providesCategoryViewModel(CategoryService categoryService){
         return new CategoryViewModel(categoryService);
     }
-
 }

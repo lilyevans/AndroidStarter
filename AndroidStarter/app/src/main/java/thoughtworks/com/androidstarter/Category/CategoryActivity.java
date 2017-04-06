@@ -1,16 +1,12 @@
 package thoughtworks.com.androidstarter.Category;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import dagger.Module;
-import dagger.Provides;
 import thoughtworks.com.androidstarter.CategoryComponent;
-import thoughtworks.com.androidstarter.DaggerCategoryComponent;
 import thoughtworks.com.androidstarter.CategoryModule;
+import thoughtworks.com.androidstarter.DaggerCategoryComponent;
 
-@Module
 public class CategoryActivity extends AppCompatActivity {
 
     @Override
@@ -18,13 +14,11 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         CategoryComponent component = DaggerCategoryComponent.builder().categoryModule(new CategoryModule()).build();
-        CategoryView categoryView = component.provideCategoryView();
+        CategoryViewModel categoryViewModel = component.provideCategoryViewModel();
+
+        CategoryView categoryView = new CategoryView(this, categoryViewModel);
 
         setContentView(categoryView);
     }
 
-    @Provides
-    public Context provideCategoryActivityContext(){
-        return CategoryActivity.this;
-    }
 }

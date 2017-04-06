@@ -3,13 +3,11 @@ package thoughtworks.com.androidstarter;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import thoughtworks.com.androidstarter.Category.CategoryActivity;
-import thoughtworks.com.androidstarter.Category.CategoryView;
+import thoughtworks.com.androidstarter.Category.CategoryViewModel;
 
 @Singleton
-@Component(modules = {CategoryModule.class, CategoryActivity.class, HttpModule.class})
+@Component(modules = {CategoryModule.class, HttpModule.class})
 public interface CategoryComponent {
 
-    CategoryView provideCategoryView();
-
+    CategoryViewModel provideCategoryViewModel();
 }

@@ -22,9 +22,4 @@ public class SongModule {
     public SongViewModel provideSongViewModel(SongService songService){
         return new SongViewModel(songService);
     }
-
-    @Provides
-    public SongView provideSongView(Context context, ArrayList<String> songIds, SongViewModel songViewModel){
-        return new SongView(context, songIds, songViewModel);
-    }
 }

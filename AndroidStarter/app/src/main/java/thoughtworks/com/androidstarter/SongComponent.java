@@ -3,12 +3,11 @@ package thoughtworks.com.androidstarter;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import thoughtworks.com.androidstarter.Song.SongActivity;
-import thoughtworks.com.androidstarter.Song.SongView;
+import thoughtworks.com.androidstarter.Song.SongViewModel;
 
 @Singleton
-@Component(modules = {HttpModule.class, SongModule.class, SongActivity.class})
+@Component(modules = {HttpModule.class, SongModule.class})
 public interface SongComponent {
 
-    SongView provideSongView();
+    SongViewModel provideSongViewModel();
 }
