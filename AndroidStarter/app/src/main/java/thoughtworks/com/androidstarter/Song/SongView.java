@@ -4,17 +4,19 @@ import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import thoughtworks.com.androidstarter.R;
 
 public class SongView extends ListView{
     @Inject
-    public SongView(Context context, SongViewModel songViewModel) {
+    public SongView(Context context, ArrayList<String> songIds, SongViewModel songViewModel) {
         super(context);
 
         ArrayAdapter<Song> songArrayAdapter = songViewModel.buildArrayAdapter(context);
-        songViewModel.populateAdapter(songArrayAdapter);
+        songViewModel.populateAdapter(songIds, songArrayAdapter);
         setAdapter(songArrayAdapter);
 
         setId(R.id.song_list_view);

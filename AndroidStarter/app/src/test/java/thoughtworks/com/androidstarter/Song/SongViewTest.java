@@ -9,6 +9,8 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import java.util.ArrayList;
+
 import thoughtworks.com.androidstarter.BuildConfig;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -26,6 +28,7 @@ public class SongViewTest {
     private SongActivity songActivity;
     private ArrayAdapter<Song> mockAdapter;
     private SongView songView;
+    private ArrayList<String> songIds;
 
     @Before
     public void setUp() throws Exception {
@@ -36,7 +39,9 @@ public class SongViewTest {
         when(mockAdapter.getViewTypeCount()).thenReturn(1);
         when(songViewModel.buildArrayAdapter(songActivity)).thenReturn(mockAdapter);
 
-        songView = new SongView(songActivity, songViewModel);
+        songIds = mock(ArrayList.class);
+
+        songView = new SongView(songActivity, songIds, songViewModel);
     }
 
     @Test
@@ -46,7 +51,7 @@ public class SongViewTest {
 
     @Test
     public void shouldPrepareAndPopulateArrayAdaoterUsingSongViewModel() throws Exception {
-        verify(songViewModel).populateAdapter(mockAdapter);
+        verify(songViewModel).populateAdapter(songIds, mockAdapter);
     }
 
     @Test

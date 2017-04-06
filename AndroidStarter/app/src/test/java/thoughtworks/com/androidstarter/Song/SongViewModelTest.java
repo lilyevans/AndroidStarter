@@ -19,7 +19,7 @@ public class SongViewModelTest {
     @Test
     public void shouldBuildArrayAdapterForSong() throws Exception {
         SongService songService = mock(SongService.class);
-        SongViewModel songViewModel = new SongViewModel(songService, new ArrayList<String>());
+        SongViewModel songViewModel = new SongViewModel(songService);
 
         Context mockContext = mock(Context.class);
         when(mockContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(mock(LayoutInflater.class));
@@ -33,11 +33,11 @@ public class SongViewModelTest {
     public void shouldPrepareAndPopulateArrayAdapterUsingSongService() throws Exception {
         SongService songService = mock(SongService.class);
         ArrayList<String> songIds = mock(ArrayList.class);
-        SongViewModel songViewModel = new SongViewModel(songService, songIds);
+        SongViewModel songViewModel = new SongViewModel(songService);
 
         ArrayAdapter<Song> adapter = mock(ArrayAdapter.class);
 
-        songViewModel.populateAdapter(adapter);
+        songViewModel.populateAdapter(songIds, adapter);
 
         verify(adapter).setNotifyOnChange(true);
         verify(songService).getSongs(songIds, adapter);

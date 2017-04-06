@@ -19,12 +19,12 @@ public class SongModule {
     }
 
     @Provides
-    public SongViewModel provideSongViewModel(SongService songService, ArrayList<String> songIds){
-        return new SongViewModel(songService, songIds);
+    public SongViewModel provideSongViewModel(SongService songService){
+        return new SongViewModel(songService);
     }
 
     @Provides
-    public SongView provideSongView(Context context, SongViewModel songViewModel){
-        return new SongView(context, songViewModel);
+    public SongView provideSongView(Context context, ArrayList<String> songIds, SongViewModel songViewModel){
+        return new SongView(context, songIds, songViewModel);
     }
 }
