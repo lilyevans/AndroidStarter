@@ -5,12 +5,15 @@ import android.widget.ArrayAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import thoughtworks.com.androidstarter.RetrofitInterface;
 
-class SongService {
+public class SongService {
     private RetrofitInterface retrofitInterface;
 
+    @Inject
     public SongService(RetrofitInterface retrofitInterface) {
         this.retrofitInterface = retrofitInterface;
     }

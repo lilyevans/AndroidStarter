@@ -5,12 +5,15 @@ import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import thoughtworks.com.androidstarter.R;
 
 public class SongViewModel {
     private SongService songService;
     private ArrayList<String> songIds;
 
+    @Inject
     public SongViewModel(SongService songService, ArrayList<String> songIds) {
         this.songService = songService;
         this.songIds = songIds;

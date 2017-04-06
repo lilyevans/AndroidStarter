@@ -4,9 +4,12 @@ import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import javax.inject.Inject;
+
 import thoughtworks.com.androidstarter.R;
 
-class SongView extends ListView{
+public class SongView extends ListView{
+    @Inject
     public SongView(Context context, SongViewModel songViewModel) {
         super(context);
 
