@@ -4,9 +4,12 @@ import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import javax.inject.Inject;
+
 import thoughtworks.com.androidstarter.R;
 
 public class TagView extends ListView {
+    @Inject
     public TagView(Context context, TagViewModel tagViewModel) {
         super(context);
 

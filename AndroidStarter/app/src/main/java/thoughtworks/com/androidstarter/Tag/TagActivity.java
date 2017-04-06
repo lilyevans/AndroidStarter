@@ -1,5 +1,6 @@
 package thoughtworks.com.androidstarter.Tag;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,9 +20,8 @@ public class TagActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         TagComponent component = DaggerTagComponent.builder().tagModule(new TagModule()).build();
-        TagViewModel tagViewModel = component.provideTagViewModel();
+        TagView tagView = component.provideTagView();
 
-        TagView tagView = new TagView(this, tagViewModel);
         setContentView(tagView);
     }
 
@@ -30,5 +30,10 @@ public class TagActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         return intent.getStringExtra("categoryID");
+    }
+
+    @Provides
+    public Context provideActivityContext(){
+        return TagActivity.this;
     }
 }
