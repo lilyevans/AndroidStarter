@@ -27,7 +27,7 @@ public class DisplayMessageActivityTest {
 
         TextView textView = (TextView) activity.findViewById(R.id.textView);
 
-        assertThat(textView.getText().toString(), is(equalTo("no message")));
+        assertThat(textView.getText().toString(), is(equalTo("message")));
 
     }
 }
